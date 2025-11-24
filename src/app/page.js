@@ -1,6 +1,7 @@
 import Features from "./components/Features";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
+import Testimonials from "./components/Testimonials";
 
 export default async function HomePage() {
   const res = await fetch("http://localhost:5000/api/products");
@@ -27,6 +28,7 @@ export default async function HomePage() {
         )}
       </div>
       <Features></Features>
+      <Testimonials></Testimonials>
     </div>
   );
 }
