@@ -1,3 +1,4 @@
+import Features from "./components/Features";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
 
@@ -12,7 +13,7 @@ export default async function HomePage() {
     <div>
       <Hero />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-11/12 mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6">Our Products</h1>
 
         {visibleProducts.length === 0 ? (
@@ -25,6 +26,7 @@ export default async function HomePage() {
           </section>
         )}
       </div>
+      <Features></Features>
     </div>
   );
 }

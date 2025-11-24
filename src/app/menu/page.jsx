@@ -5,7 +5,7 @@ export default async function MenuPage() {
   const products = await res.json();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-11/12 mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Our Menu</h1>
 
       {products.length === 0 ? (
