@@ -16,8 +16,9 @@ export default function Footer() {
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
                 <span className="text-white font-bold text-lg">F</span>
               </div>
-              <span className="text-2xl font-bold text-gray-800">FoodHub</span>
-            </div>
+              <span className="text-2xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                FoodHub
+              </span>            </div>
             <p className="text-gray-600 mb-4 text-sm leading-relaxed">
               Discover the finest restaurants and cuisines in your city. Order your favorite meals with just a few clicks.
             </p>
@@ -88,7 +89,7 @@ export default function Footer() {
                     <MdEmail />
 
                 </span>
-                <span>Shoyaib105@.com</span>
+                <span>Shoyaib105@gmail.com</span>
               </div>
             </div>
 
