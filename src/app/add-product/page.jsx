@@ -111,7 +111,7 @@ export default function AddProductPage() {
           value={form.category}
           onChange={handleChange}
           required
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded bg-[#0a0a0a]"
         >
           <option value="">Select Category</option>
           <option value="Pizza">Pizza</option>
