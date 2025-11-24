@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+         cz-shortcut-listen="true"
       >
         <Navbar />
         <main className="flex-1">{children}</main>

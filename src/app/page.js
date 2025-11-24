@@ -1,7 +1,13 @@
-import Image from "next/image";
+import Hero from "./components/Hero";
 
-export default function Home() {
+export default async function HomePage() {
+  const res = await fetch("http://localhost:5000/api/products");
+  const products = await res.json();
+
   return (
-    <div>Hi</div>
+    <div>
+      <Hero />
+
+    </div>
   );
 }
