@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
 
       {/* Title & Description */}
       <h2 className="text-xl font-semibold mb-1">{product.title}</h2>
-      <p className="text-gray-400 text-sm mb-2">{product.shortDescription}</p>
+      <p className="text-gray-500 text-sm mb-2">{product.shortDescription}</p>
 
       {/* Price & Rating */}
       <div className="mt-auto">

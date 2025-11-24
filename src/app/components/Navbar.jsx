@@ -34,7 +34,7 @@ export default function Navbar() {
             </Link>
             
             <Link 
-              href="/products" 
+              href="/menu" 
               className="px-4 py-2 text-gray-700 hover:text-red-500 transition-colors font-medium rounded-lg hover:bg-red-50 flex items-center space-x-1"
             >
               
@@ -148,7 +148,7 @@ export default function Navbar() {
               </Link>
               
               <Link 
-                href="/products" 
+                href="/menu" 
                 className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >
