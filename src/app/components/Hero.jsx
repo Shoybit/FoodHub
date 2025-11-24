@@ -7,7 +7,7 @@ export default function Hero() {
     "https://i.ibb.co.com/NdbFVb6S/grilled-steak-with-vegetables-wooden-board-23-2151966849.jpg",
     "https://i.ibb.co.com/NdbFVb6S/grilled-steak-with-vegetables-wooden-board-23-2151966849.jpg",
     "https://i.ibb.co.com/s9dv84Tq/slice-chocolate-brownie-with-walnut-vanilla-ice-cream-114579-903.jpg",
-    "https://i.ibb.co.com/jv61FQXB/images-q-tbn-ANd9-Gc-Q-0-Y1-PCY6-N5-STdgy4-OGk08-XNq-FJuk-An-G1rp5-I6-l-E-eb-LTUGUD.jpg",
+    "https://i.ibb.co.com/Z67Nc8sT/delicious-pizza-wooden-cutting-board-left-side-isolated-dark-surface-with-free-space-close-up-shot-1.jpg",
   ];
 
   const [current, setCurrent] = useState(0);
