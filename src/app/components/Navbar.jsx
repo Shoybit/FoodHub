@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
-      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-11/12 mx-auto px-2 sm:px-2 lg:px-4">
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
@@ -26,8 +26,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          {/* Desktop Navigation (Only visible on large screens now) */}
+          <div className="hidden lg:flex items-center space-x-1">
 
             <Link 
               href="/" 
@@ -75,8 +75,8 @@ export default function Navbar() {
 
           </div>
 
-          {/* Right Side Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Right Side Buttons (visible only on desktop) */}
+          <div className="hidden lg:flex items-center space-x-4">
             {!loggedIn ? (
               <>
                 <Link 
@@ -128,8 +128,8 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile & Tablet Menu Button (lg:hidden) */}
+          <div className="lg:hidden flex items-center space-x-2">
             {!loggedIn && (
               <Link 
                 href="/login" 
@@ -147,9 +147,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile & Tablet Dropdown Menu (visible until lg) */}
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4 bg-white">
+          <div className="lg:hidden border-t border-gray-200 py-4 bg-white">
             <div className="flex flex-col space-y-3">
 
               <Link 
