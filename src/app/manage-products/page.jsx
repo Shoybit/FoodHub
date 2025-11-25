@@ -72,7 +72,6 @@ export default function ManageProductsPage() {
       <h1 className="text-3xl font-bold mb-6 ">Manage Products</h1>
 
       {message && <p className="mb-4 text-green-600">{message}</p>}
-      {loading && <p className="text-gray-600">Loading products...</p>}
 
       {!loading && (
         <div className="overflow-x-auto">
@@ -83,7 +82,7 @@ export default function ManageProductsPage() {
                 <th className="border px-4 py-2 text-left">Category</th>
                 <th className="border px-4 py-2 text-left">Price</th>
                 <th className="border px-4 py-2 text-left">Rating</th>
-                <th className="border px-4 py-2 text-left">Actions</th>
+                <th className="border px-4 py-2 text-left w-45">Actions</th>
               </tr>
             </thead>
 
