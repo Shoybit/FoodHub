@@ -36,7 +36,7 @@ export default function MenuPage() {
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <h1 className="text-3xl font-bold mb-4 sm:mb-0">Our Menu</h1>
 
-        <div className="w-full sm:w-1/3">
+        <div className="w-full sm:w-[370px]">
           <input
             type="text"
             value={search}
