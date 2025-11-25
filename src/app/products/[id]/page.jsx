@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { FaArrowLeft } from "react-icons/fa"; 
+import { FaArrowLeft, FaStar } from "react-icons/fa"; 
 
 export default function ProductDetailsPage() {
   const params = useParams();
@@ -27,14 +27,17 @@ export default function ProductDetailsPage() {
         className="w-full h-80 object-cover rounded"
       />
       <h1 className="text-3xl font-bold mt-4">{product.title}</h1>
-      <p className="text-gray-700 mt-2">{product.fullDescription}</p>
+      <p className="text-gray-500 mt-2">{product.fullDescription}</p>
       <p className="mt-2 font-bold text-lg">${product.price.toFixed(2)}</p>
       
       <div className="mt-1 flex items-center justify-between">
-        <p className="text-yellow-500">Rating: {product.rating}</p>
+        <p className="flex items-center gap-1 text-yellow-500 font-semibold">
+        Rating: {product.rating} <FaStar />
+        </p>
+
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-1 px-3 py-1 bg-black text-white rounded hover:bg-gray-800"
+          className="flex items-center gap-1 px-3 py-1 bg-black text-white rounded hover:bg-gray-800 cursor-pointer"
         >
           <FaArrowLeft /> Back
         </button>
