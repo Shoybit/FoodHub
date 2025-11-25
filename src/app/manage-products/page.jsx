@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
+import ProtectedRoute from "../components/ProtectedRoute"; // import
 
-export default function ManageProductsPage() {
+function ManageProductsPageComponent() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,8 @@ export default function ManageProductsPage() {
       setLoading(false);
     }
   };
-    if (loading) return <Loader/>;
+
+  if (loading) return <Loader />;
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
@@ -51,12 +53,8 @@ export default function ManageProductsPage() {
         });
 
         if (res.ok) {
-          Swal.fire(
-            "Deleted!",
-            "The product has been deleted.",
-            "success"
-          );
-              fetchProducts();
+          Swal.fire("Deleted!", "The product has been deleted.", "success");
+          fetchProducts();
         } else {
           Swal.fire("Error!", "Failed to delete product.", "error");
         }
@@ -64,12 +62,11 @@ export default function ManageProductsPage() {
         Swal.fire("Error!", err.message, "error");
       }
     }
-    
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 ">Manage Products</h1>
+      <h1 className="text-3xl font-bold mb-6">Manage Products</h1>
 
       {message && <p className="mb-4 text-green-600">{message}</p>}
 
@@ -117,5 +114,13 @@ export default function ManageProductsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ManageProductsPage() {
+  return (
+    <ProtectedRoute>
+      <ManageProductsPageComponent />
+    </ProtectedRoute>
   );
 }

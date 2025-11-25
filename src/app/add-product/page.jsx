@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Loader from "../components/Loader";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "../components/ProtectedRoute";
+import Loader from "../components/Loader";
 
-export default function AddProductPage() {
-  const [loading, setLoading] = useState(true);
+function AddProductForm() {
+  const [loading, setLoading] = useState(true); 
   const [submitting, setSubmitting] = useState(false);
 
   const [form, setForm] = useState({
@@ -175,5 +176,13 @@ export default function AddProductPage() {
         </button>
       </form>
     </div>
+  );
+}
+
+export default function AddProductPage() {
+  return (
+    <ProtectedRoute>
+      <AddProductForm />
+    </ProtectedRoute>
   );
 }
