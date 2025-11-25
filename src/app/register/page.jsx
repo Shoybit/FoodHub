@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { auth, googleProvider } from "../Firebase/firebaseConfig";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -74,39 +76,38 @@ export default function RegisterPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: form.password,
-        }),
-      });
+      const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
+      await updateProfile(userCredential.user, { displayName: form.name });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error(data.message || "Registration failed");
-        setLoading(false);
-        return;
-      }
-
-      toast.success("Registration successful!");
+      toast.success("Registration successful!", { autoClose: 2500 });
       
       setTimeout(() => {
-        router.push("/login");
-      }, 1200);
+        router.push("/"); 
+      }, 1500);
     } catch (error) {
-      toast.error("Server error! Please try again later.");
-      console.error("Registration error:", error);
+      toast.error(`${error.message}`, { autoClose: 3000 });
+      console.error("Firebase register error:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleGoogleRegister() {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Google Sign-In successful!", { autoClose: 2500 });
+      setTimeout(() => {
+        router.push("/"); 
+      }, 1500);
+    } catch (error) {
+      toast.error(`${error.message}`, { autoClose: 3000 });
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -134,11 +135,9 @@ export default function RegisterPage() {
               FoodHub
             </span>  
           </h1>
-
           <p className="text-gray-400 mt-3 text-sm">
             The ultimate food ordering & management platform
           </p>
-
           <h2 className="text-2xl font-semibold mt-6 bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
             Create Account
           </h2>
@@ -146,96 +145,64 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name Field */}
+          {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Full Name
-            </label>
+            <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
               required
-              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
-                errors.name 
-                  ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"
-              } text-white placeholder-gray-400`}
+              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"} text-white placeholder-gray-400`}
               placeholder="Enter your full name"
             />
-            {errors.name && (
-              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-            )}
+            {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
           </div>
 
-          {/* Email Field */}
+          {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email Address
-            </label>
+            <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
               required
-              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
-                errors.email 
-                  ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"
-              } text-white placeholder-gray-400`}
+              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"} text-white placeholder-gray-400`}
               placeholder="Enter your email"
             />
-            {errors.email && (
-              <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password Field */}
+          {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
-            </label>
+            <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
             <input
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
               required
-              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
-                errors.password 
-                  ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"
-              } text-white placeholder-gray-400`}
+              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${errors.password ? "border-red-500 focus:ring-red-500" : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"} text-white placeholder-gray-400`}
               placeholder="Enter your password"
             />
-            {errors.password && (
-              <p className="text-red-400 text-sm mt-1">{errors.password}</p>
-            )}
+            {errors.password && <p className="text-red-400 text-sm mt-1">{errors.password}</p>}
           </div>
 
-          {/* Confirm Password Field */}
+          {/* Confirm Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Confirm Password
-            </label>
+            <label className="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
               value={form.confirmPassword}
               onChange={handleChange}
               required
-              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
-                errors.confirmPassword 
-                  ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"
-              } text-white placeholder-gray-400`}
+              className={`w-full px-4 py-3 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 ${errors.confirmPassword ? "border-red-500 focus:ring-red-500" : "border-gray-700 focus:ring-orange-500 focus:border-orange-500"} text-white placeholder-gray-400`}
               placeholder="Confirm your password"
             />
-            {errors.confirmPassword && (
-              <p className="text-red-400 text-sm mt-1">{errors.confirmPassword}</p>
-            )}
+            {errors.confirmPassword && <p className="text-red-400 text-sm mt-1">{errors.confirmPassword}</p>}
           </div>
 
           <button
@@ -243,31 +210,27 @@ export default function RegisterPage() {
             disabled={loading}
             className="w-full py-3 bg-linear-to-r from-red-500 to-orange-500 text-white rounded-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg hover:shadow-xl"
           >
-            {loading ? (
-              <div className="flex items-center justify-center">
-                <div className="w-5 h-5 border-t-2 border-white rounded-full animate-spin mr-2"></div>
-                Creating Account...
-              </div>
-            ) : (
-              "Create Account"
-            )}
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
 
+        {/* Divider */}
         <div className="flex items-center my-6">
           <div className="flex-1 border-t border-gray-700"></div>
           <span className="px-3 text-gray-500 text-sm">OR</span>
           <div className="flex-1 border-t border-gray-700"></div>
         </div>
 
+        {/* Google Sign-In */}
         <div className="space-y-3">
-            <button
+          <button
             type="button"
+            onClick={handleGoogleRegister}
             className="w-full py-3 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors duration-200 flex items-center justify-center gap-3 border border-gray-700 shadow-lg hover:shadow-xl"
-            >
+          >
             <FcGoogle className="w-5 h-5" />
             Continue with Google
-            </button>
+          </button>
         </div>
 
         <p className="text-center text-gray-400 mt-8">
