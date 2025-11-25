@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import Loader from "../components/Loader";
 
 export default function ManageProductsPage() {
   const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ export default function ManageProductsPage() {
       setLoading(false);
     }
   };
+    if (loading) return <Loader/>;
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
@@ -62,6 +64,7 @@ export default function ManageProductsPage() {
         Swal.fire("Error!", err.message, "error");
       }
     }
+    
   };
 
   return (

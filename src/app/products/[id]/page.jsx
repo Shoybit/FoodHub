@@ -1,23 +1,39 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { FaArrowLeft, FaStar, FaRegStar } from "react-icons/fa"; 
+import { FaArrowLeft, FaStar, FaRegStar } from "react-icons/fa";
+import Loader from "@/app/components/Loader";
 
 export default function ProductDetailsPage() {
   const params = useParams();
   const router = useRouter();
+
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true); // <-- FIXED
 
   useEffect(() => {
     async function fetchProduct() {
-      const res = await fetch(`http://localhost:5000/api/products/${params.id}`);
-      const data = await res.json();
-      setProduct(data);
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/products/${params.id}`
+        );
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false); // FINALLY STOP LOADER
+      }
     }
+
     fetchProduct();
   }, [params.id]);
 
-  if (!product) return <p>Loading...</p>;
+  // Show Loader
+  if (loading) return <Loader />;
+
+  // If product still not found
+  if (!product) return <p className="text-center mt-10">Product not found!</p>;
 
   const renderStars = (rating) => {
     const stars = [];
@@ -45,12 +61,13 @@ export default function ProductDetailsPage() {
       </div>
 
       <h1 className="text-3xl font-bold mt-4">{product.title}</h1>
-      <p className="text-gray-500 mt-2">{product.fullDescription}</p>
-      <p className="mt-2 font-bold text-lg">
-        Price:
-        ${product.price.toFixed(2)}</p>
+      <p className="text-gray-400 mt-2">{product.fullDescription}</p>
 
-      <div className="mt-2 flex items-center justify-between">
+      <p className="mt-3 text-lg font-bold text-white">
+        Price: <span className="text-[#00ff8c]">${product.price.toFixed(2)}</span>
+      </p>
+
+      <div className="mt-4 flex items-center justify-between">
         <p className="flex items-center gap-2 text-yellow-500 font-semibold">
           {renderStars(product.rating)}
           <span className="ml-1 text-white">{product.rating.toFixed(1)}/5</span>
@@ -58,7 +75,7 @@ export default function ProductDetailsPage() {
 
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-1 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors duration-200"
+          className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition"
         >
           <FaArrowLeft /> Back
         </button>

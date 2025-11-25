@@ -1,13 +1,33 @@
+"use client";
+import { useEffect, useState } from "react";
 import Features from "./components/Features";
 import Hero from "./components/Hero";
+import Loader from "./components/Loader";
 import ProductCard from "./components/ProductCard";
 import Testimonials from "./components/Testimonials";
 
-export default async function HomePage() {
-  const res = await fetch("http://localhost:5000/api/products");
-  const products = await res.json();
+export default function HomePage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Show only the first 8 products
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await fetch("http://localhost:5000/api/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Failed to load products:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <Loader />;
+
   const visibleProducts = products.slice(0, 8);
 
   return (
@@ -27,8 +47,9 @@ export default async function HomePage() {
           </section>
         )}
       </div>
-      <Features></Features>
-      <Testimonials></Testimonials>
+
+      <Features />
+      <Testimonials />
     </div>
   );
 }

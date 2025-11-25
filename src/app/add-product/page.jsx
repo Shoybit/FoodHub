@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 
 export default function AddProductPage() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true); // PAGE LOADER (Default true)
 
   const [form, setForm] = useState({
     title: "",
@@ -17,12 +19,17 @@ export default function AddProductPage() {
     priority: "",
   });
 
-  // handle input 
+  // 🔥 Page load হলে 1s পরে loader বন্ধ
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 800); // 0.8s loader
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // submit form
+  // SUBMIT HANDLE
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess("");
@@ -52,11 +59,14 @@ export default function AddProductPage() {
           rating: "",
           priority: "",
         });
-      } 
+      }
     } catch (err) {
       setError("Error: " + err.message);
     }
   };
+
+  // 🔥 Page প্রথম লোড হলে Loader দেখাবে
+  if (loading) return <Loader />;
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">

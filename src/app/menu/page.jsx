@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 export default function MenuPage() {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,7 @@ export default function MenuPage() {
       setLoading(false);
     }
   };
+  if (loading) return <Loader/>;
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
