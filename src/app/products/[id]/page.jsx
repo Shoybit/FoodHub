@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -9,7 +10,7 @@ export default function ProductDetailsPage() {
   const router = useRouter();
 
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true); // <-- FIXED
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     async function fetchProduct() {
@@ -22,17 +23,15 @@ export default function ProductDetailsPage() {
       } catch (error) {
         console.error("Error fetching product:", error);
       } finally {
-        setLoading(false); // FINALLY STOP LOADER
+        setLoading(false); 
       }
     }
 
     fetchProduct();
   }, [params.id]);
 
-  // Show Loader
   if (loading) return <Loader />;
 
-  // If product still not found
   if (!product) return <p className="text-center mt-10">Product not found!</p>;
 
   const renderStars = (rating) => {
