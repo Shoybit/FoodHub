@@ -2,13 +2,18 @@ import Link from "next/link";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="border rounded-lg p-4 hover:shadow-lg transition flex flex-col h-full">
+    <Link
+      href={`/products/${product._id}`}
+      className="group border rounded-lg p-4 hover:shadow-lg transition flex flex-col h-full"
+    >
       {/* Image */}
-      <img
-        src={product.imageUrl}
-        alt={product.title}
-        className="h-40 w-full object-cover rounded mb-3"
-      />
+      <div className="overflow-hidden rounded mb-3">
+        <img
+          src={product.imageUrl}
+          alt={product.title}
+          className="h-40 w-full object-cover rounded transform transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
 
       {/* Title & Description */}
       <h2 className="text-xl font-semibold mb-1">{product.title}</h2>
@@ -20,13 +25,10 @@ export default function ProductCard({ product }) {
         <p className="text-yellow-500 mb-2">Rating: {product.rating}</p>
 
         {/* Details Button */}
-        <Link
-          href={`/products/${product._id}`}
-          className="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
-        >
+        <span className="text-sm bg-[#ff6900] text-white px-3 py-1 rounded hover:bg-[#d46413] transition cursor-pointer">
           Details
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
