@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddProductPage() {
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true); // PAGE LOADER (Default true)
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const [form, setForm] = useState({
     title: "",
@@ -19,9 +20,8 @@ export default function AddProductPage() {
     priority: "",
   });
 
-  // 🔥 Page load হলে 1s পরে loader বন্ধ
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800); // 0.8s loader
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -29,26 +29,35 @@ export default function AddProductPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // SUBMIT HANDLE
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess("");
-    setError("");
+    setSubmitting(true);
+
+    const payload = {
+      ...form,
+      price: Number(form.price) || 0,
+      rating: Number(form.rating) || 0,
+      priority: Number(form.priority) || 0,
+    };
 
     try {
       const res = await fetch("http://localhost:5000/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          price: Number(form.price),
-          rating: Number(form.rating),
-          priority: Number(form.priority),
-        }),
+        body: JSON.stringify(payload),
       });
 
-      if (res.ok) {
-        setSuccess("Product added successfully!");
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {
+        toast.error("Invalid response from server");
+        setSubmitting(false);
+        return;
+      }
+
+      if (res.ok && data.success) {
+        toast.success(data.message || "Product added successfully!");
         setForm({
           title: "",
           shortDescription: "",
@@ -59,24 +68,23 @@ export default function AddProductPage() {
           rating: "",
           priority: "",
         });
+      } else {
+        toast.error(data.message || "Failed to create product!");
       }
     } catch (err) {
-      setError("Error: " + err.message);
+      toast.error("Network error: " + err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  // 🔥 Page প্রথম লোড হলে Loader দেখাবে
   if (loading) return <Loader />;
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
+      <ToastContainer />
       <h1 className="text-3xl font-semibold mb-6">Add Product</h1>
-
-      {success && <p className="text-green-600 mb-4">{success}</p>}
-      {error && <p className="text-red-600 mb-4">{error}</p>}
-
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <input
           type="text"
           name="title"
@@ -86,7 +94,6 @@ export default function AddProductPage() {
           required
           className="w-full border p-2 rounded"
         />
-
         <input
           type="text"
           name="shortDescription"
@@ -97,7 +104,6 @@ export default function AddProductPage() {
           maxLength={160}
           className="w-full border p-2 rounded"
         />
-
         <textarea
           name="fullDescription"
           placeholder="Full Description"
@@ -105,7 +111,6 @@ export default function AddProductPage() {
           onChange={handleChange}
           className="w-full border p-2 rounded"
         />
-
         <input
           type="number"
           name="price"
@@ -115,13 +120,12 @@ export default function AddProductPage() {
           required
           className="w-full border p-2 rounded"
         />
-
         <select
           name="category"
           value={form.category}
           onChange={handleChange}
           required
-          className="w-full border p-2 rounded bg-[#0a0a0a]"
+          className="w-full border p-2 rounded bg-black"
         >
           <option value="">Select Category</option>
           <option value="Pizza">Pizza</option>
@@ -132,7 +136,6 @@ export default function AddProductPage() {
           <option value="Fried Chicken">Fried Chicken</option>
           <option value="Drinks">Drinks</option>
         </select>
-
         <input
           type="text"
           name="imageUrl"
@@ -141,30 +144,34 @@ export default function AddProductPage() {
           onChange={handleChange}
           className="w-full border p-2 rounded"
         />
-
         <input
           type="number"
           name="rating"
           placeholder="Rating (0–5)"
           value={form.rating}
           onChange={handleChange}
+          min="0"
+          max="5"
           className="w-full border p-2 rounded"
         />
-
         <input
           type="number"
           name="priority"
           placeholder="Priority (0–10)"
           value={form.priority}
           onChange={handleChange}
+          min="0"
+          max="10"
           className="w-full border p-2 rounded"
         />
-
         <button
           type="submit"
-          className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
+          disabled={submitting}
+          className={`w-full py-2 rounded text-white ${
+            submitting ? "bg-gray-400" : "bg-red-500 hover:bg-red-600"
+          }`}
         >
-          Add Product
+          {submitting ? "Adding..." : "Add Product"}
         </button>
       </form>
     </div>
