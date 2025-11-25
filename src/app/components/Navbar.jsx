@@ -86,7 +86,7 @@ export default function Navbar() {
                   Login
                 </Link>
                 <Link 
-                  href="/signup" 
+                  href="/register" 
                   className="px-6 py-2 bg-linear-to-r from-red-500 to-orange-500 text-white rounded-full hover:shadow-lg transition-all font-medium"
                 >
                   Sign Up
