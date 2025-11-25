@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname(); 
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
+    <nav className="bg-black shadow-lg sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-11/12 mx-auto px-2 sm:px-2 lg:px-4">
         <div className="flex justify-between items-center h-16">
 
@@ -34,7 +34,7 @@ export default function Navbar() {
               className={`px-4 py-2 font-medium rounded-lg flex items-center space-x-1 transition-colors ${
                 pathname === "/" 
                   ? "text-red-500 bg-red-50"
-                  : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                  : "text-white hover:text-red-500 hover:bg-red-50"
               }`}
             >
               <span>Home</span>
@@ -45,7 +45,7 @@ export default function Navbar() {
               className={`px-4 py-2 font-medium rounded-lg flex items-center space-x-1 transition-colors ${
                 pathname === "/menu" 
                   ? "text-red-500 bg-red-50"
-                  : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                  : "text-white hover:text-red-500 hover:bg-red-50"
               }`}
             >
               <span>Menu</span>
@@ -56,7 +56,7 @@ export default function Navbar() {
               className={`px-4 py-2 font-medium rounded-lg flex items-center space-x-1 transition-colors ${
                 pathname === "/add-product" 
                   ? "text-red-500 bg-red-50"
-                  : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                  : "text-white hover:text-red-500 hover:bg-red-50"
               }`}
             >
               <span>Add Product</span>
@@ -67,7 +67,7 @@ export default function Navbar() {
               className={`px-4 py-2 font-medium rounded-lg flex items-center space-x-1 transition-colors ${
                 pathname === "/manage-products" 
                   ? "text-red-500 bg-red-50"
-                  : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                  : "text-white hover:text-red-500 hover:bg-red-50"
               }`}
             >
               <span>Manage</span>
@@ -149,7 +149,7 @@ export default function Navbar() {
 
         {/* Mobile & Tablet Dropdown Menu (visible until lg) */}
         {menuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4 bg-white">
+          <div className="lg:hidden border-t border-gray-200 py-4 bg-black">
             <div className="flex flex-col space-y-3">
 
               <Link 
@@ -157,7 +157,7 @@ export default function Navbar() {
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                   pathname === "/" 
                     ? "text-red-500 bg-red-50"
-                    : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                    : "text-white hover:text-red-500 hover:bg-red-50"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -169,7 +169,7 @@ export default function Navbar() {
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                   pathname === "/menu" 
                     ? "text-red-500 bg-red-50"
-                    : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                    : "text-white hover:text-red-500 hover:bg-red-50"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -181,7 +181,7 @@ export default function Navbar() {
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                   pathname === "/add-product" 
                     ? "text-red-500 bg-red-50"
-                    : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                    : "text-white hover:text-red-500 hover:bg-red-50"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -193,7 +193,7 @@ export default function Navbar() {
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors ${
                   pathname === "/manage-products" 
                     ? "text-red-500 bg-red-50"
-                    : "text-gray-700 hover:text-red-500 hover:bg-red-50"
+                    : "text-white hover:text-red-500 hover:bg-red-50"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
