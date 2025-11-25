@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 export default function ManageProductsPage() {
   const [products, setProducts] = useState([]);
@@ -31,21 +32,35 @@ export default function ManageProductsPage() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this product?")) return;
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
 
-    try {
-      const res = await fetch(`${API}/api/products/${id}`, {
-        method: "DELETE",
-      });
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`${API}/api/products/${id}`, {
+          method: "DELETE",
+        });
 
-      if (res.ok) {
-        setMessage("Product deleted successfully");
-        fetchProducts();
-      } else {
-        setMessage("Failed to delete product");
+        if (res.ok) {
+          Swal.fire(
+            "Deleted!",
+            "The product has been deleted.",
+            "success"
+          );
+              fetchProducts();
+        } else {
+          Swal.fire("Error!", "Failed to delete product.", "error");
+        }
+      } catch (err) {
+        Swal.fire("Error!", err.message, "error");
       }
-    } catch (err) {
-      setMessage("Error: " + err.message);
     }
   };
 
