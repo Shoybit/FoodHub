@@ -1,37 +1,63 @@
 # 🍕 FoodHub
 
-## Project Description
+FoodHub is a modern, user-friendly food ordering and management platform built with **Next.js**. Users can browse food items, search instantly, view details, and place orders. Admins can securely add, update, and delete products. The project uses **Firebase Authentication**, **MongoDB Atlas**, and a responsive UI for all devices.
 
-FoodHub is a modern, user-friendly food ordering and management platform. It allows users to browse and search for food items, view product details, and place orders. The platform supports user authentication, including email/password and Google login, and features a responsive design.
+---
 
-## Features
+## 🚀 Features
 
-* Browse and search products
-* User authentication (Email/Password, Google)
-* Responsive design
-* Dynamic routing and product pages
-* Admin panel for managing products (add, update, delete)
-* Payment integration
+### 🛍️ User Features
+- Browse all food items  
+- Search products quickly  
+- View full product details  
+- Fully responsive UI  
+- Login & Registration (Email/Password + Google)
 
-## Setup & Installation
+### 🛠️ Admin Features
+- Add new products  
+- Manage (Update/Delete) products  
+- Protected admin-only routes
 
-### Prerequisites
+### ⚙️ Technical Features
+- Next.js App Router  
+- Firebase Authentication  
+- MongoDB Atlas  
+- Serverless API hosted on Vercel  
+- Dynamic Routing & Data Fetching  
+- Environment variable support
 
-* Node.js (v18+ recommended)
-* npm or yarn
-* Firebase account for authentication
-* MongoDB instance
+---
 
-### Installation
+## 🧰 Tech Stack
 
-1. Clone the repository:
+| Category | Technology |
+|---------|------------|
+| Frontend | Next.js, React, Tailwind CSS |
+| Backend | Node.js, Express |
+| Auth | Firebase Authentication |
+| Database | MongoDB Atlas |
+| Hosting | Vercel |
+
+---
+
+## 🛠️ Installation Guide
+
+### ✔️ Prerequisites
+- Node.js **18+**
+- npm / yarn
+- Firebase project setup
+- MongoDB Atlas connection string
+
+---
+
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/Shoybit/FoodHub.git
 cd FoodHub
 ```
 
-2. Install dependencies:
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
@@ -39,7 +65,9 @@ npm install
 yarn install
 ```
 
-3. Create a `.env.local` file in the root directory and add:
+### 3️⃣ Setup Environment Variables
+
+Create a `.env.local` file in the project root:
 
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
@@ -50,9 +78,12 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
 MONGODB_URI=your_mongodb_uri
+NEXT_PUBLIC_API_BASE_URL=https://foodhub-server.vercel.app
 ```
 
-4. Start the development server:
+---
+
+### 4️⃣ Run the Development Server
 
 ```bash
 npm run dev
@@ -60,25 +91,56 @@ npm run dev
 yarn dev
 ```
 
-The app will be running at `http://localhost:3000`.
+Your app will run at:
 
-## Routes Summary
+```
+/////////////////
+```
 
-| Route              | Description                                       |
-| ------------------ | ------------------------------------------------- |
-| `/`                | Home page with featured products and hero section |
-| `/menu`            | Browse all products with search functionality     |
-| `/login`           | User login page                                   |
-| `/register`        | User registration page                            |
-| `/add-product`     | Admin page to add a new product                   |
-| `/manage-products` | Admin page to update/delete products              |
-| `/products/:id`    | Product details page                              |
+Backend API (Live URL):
 
-## Deployment
-
-The app can be deployed on platforms like Vercel or Netlify. Ensure your environment variables are set correctly on the deployment platform.
+```
+https://foodhub-server.vercel.app
+```
 
 ---
 
-**Repository:** [https://github.com/Shoybit/FoodHub](https://github.com/Shoybit/FoodHub)
-**License:** MIT
+## 📍 Routes Overview
+
+| Route              | Description |
+| ------------------ | ----------- |
+| `/`                | Home page |
+| `/menu`            | All products with search |
+| `/login`           | User login |
+| `/register`        | User registration |
+| `/add-product`     | Add product (Admin) |
+| `/manage-products` | Update/Delete products (Admin) |
+| `/products/:id`    | Product details |
+
+---
+
+## 🚀 Deployment
+
+FoodHub is fully deployable on **Vercel**, **Netlify**, or any Node.js platform.
+
+✔️ Add your environment variables in Vercel → Project Settings  
+✔️ Connect your GitHub repo  
+✔️ Deploy with one click
+
+Backend Server (Express + MongoDB Auto Hosted on Vercel):
+
+```
+https://foodhub-server.vercel.app
+```
+
+---
+
+## 📁 Repository
+
+GitHub Repo: https://github.com/Shoybit/FoodHub  
+License: **MIT**
+
+---
+
+🎉 **FoodHub — Simple, Fast & Modern Food Ordering Experience**
+

@@ -10,7 +10,7 @@ import Peyment from "./components/Peyment";
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
     useEffect(() => {
     document.title = "Home | FoodHub";
   }, []);
@@ -18,7 +18,7 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch("http://localhost:5000/api/products");
+        const res = await fetch("https://foodhub-server.vercel.app/api/products");
         const data = await res.json();
         setProducts(data);
       } catch (err) {

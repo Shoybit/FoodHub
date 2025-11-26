@@ -14,7 +14,8 @@ function ManageProductsPageComponent() {
       document.title = "Manage-Products | FoodHub";
     }, []);
 
-  const API = "http://localhost:5000";
+  const API = "https://foodhub-server.vercel.app";
+
 
   useEffect(() => {
     fetchProducts();

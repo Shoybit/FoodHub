@@ -13,7 +13,7 @@ export default function MenuPage() {
     document.title = "Menu | FoodHub";
   }, []);
 
-  const API = "http://localhost:5000/api/products";
+  const API = "https://foodhub-server.vercel.app/api/products";
 
   useEffect(() => {
     fetchProducts();

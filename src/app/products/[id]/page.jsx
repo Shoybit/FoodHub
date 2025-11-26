@@ -22,7 +22,7 @@ export default function ProductDetailsPage() {
     async function fetchProduct() {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/products/${params.id}`
+          `https://foodhub-server.vercel.app/api/products/${params.id}`
         );
         const data = await res.json();
         setProduct(data);
