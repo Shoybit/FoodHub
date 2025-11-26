@@ -1,5 +1,7 @@
 "use client";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaFacebook } from "react-icons/fa";
+import Link from "next/link";
+import { FaFacebookF,  FaInstagram, FaLinkedinIn, FaFacebook } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoCall, IoLocationSharp } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 
@@ -7,18 +9,22 @@ export default function Footer() {
   return (
     <footer className="bg-linear-to-r from-orange-50 to-amber-50 border-t border-orange-200">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
+              <Link href="/">
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
                 <span className="text-white font-bold text-lg">F</span>
               </div>
-              <span className="text-2xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                FoodHub
-              </span>            </div>
+              </Link>
+              <Link href="/">
+                <span className="cursor-pointer text-2xl font-bold bg-linear-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                  FoodHub
+                </span>
+              </Link>           </div>
             <p className="text-gray-600 mb-4 text-sm leading-relaxed">
               Discover the finest restaurants and cuisines in your city. Order your favorite meals with just a few clicks.
             </p>
@@ -27,7 +33,8 @@ export default function Footer() {
                 <FaFacebook size={14} />
               </a>
               <a href="#" className="w-8 h-8 bg-black  rounded-full flex items-center justify-center shadow-md hover:bg-orange-500 hover:text-white transition-colors">
-                <FaTwitter size={14} />
+                <FaXTwitter size={14} />
+              
               </a>
               <a href="#" className="w-8 h-8 bg-black  rounded-full flex items-center justify-center shadow-md hover:bg-orange-500 hover:text-white transition-colors">
                 <FaInstagram size={14} />
