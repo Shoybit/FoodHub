@@ -33,7 +33,7 @@ export default function Features() {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center p-6 border rounded-lg hover:shadow-xl transition"
+            className="flex flex-col items-center hover:-translate-y-2 transition-all duration-300  text-center p-6 border rounded-lg hover:shadow-xl"
           >
             {feature.icon}
             <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>

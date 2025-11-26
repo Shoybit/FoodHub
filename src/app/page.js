@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Loader from "./components/Loader";
 import ProductCard from "./components/ProductCard";
 import Testimonials from "./components/Testimonials";
+import Peyment from "./components/Peyment"; 
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -50,6 +51,7 @@ export default function HomePage() {
 
       <Features />
       <Testimonials />
+      <Peyment/>
     </div>
   );
 }
