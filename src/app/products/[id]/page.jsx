@@ -12,6 +12,12 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true); 
 
+
+    useEffect(() => {
+      document.title = "Product-Details | FoodHub";
+    }, []);
+  
+
   useEffect(() => {
     async function fetchProduct() {
       try {

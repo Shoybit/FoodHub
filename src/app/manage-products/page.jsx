@@ -3,12 +3,16 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
-import ProtectedRoute from "../components/ProtectedRoute"; // import
+import ProtectedRoute from "../components/ProtectedRoute"; 
 
 function ManageProductsPageComponent() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+
+     useEffect(() => {
+      document.title = "Manage-Products | FoodHub";
+    }, []);
 
   const API = "http://localhost:5000";
 

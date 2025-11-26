@@ -10,6 +10,10 @@ import Peyment from "./components/Peyment";
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+    document.title = "Home | FoodHub";
+  }, []);
 
   useEffect(() => {
     async function fetchProducts() {

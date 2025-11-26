@@ -9,6 +9,10 @@ export default function MenuPage() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+    document.title = "Menu | FoodHub";
+  }, []);
+
   const API = "http://localhost:5000/api/products";
 
   useEffect(() => {

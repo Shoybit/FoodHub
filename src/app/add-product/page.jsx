@@ -10,6 +10,11 @@ function AddProductForm() {
   const [loading, setLoading] = useState(true); 
   const [submitting, setSubmitting] = useState(false);
 
+      useEffect(() => {
+    document.title = "Add Product | FoodHub";
+  }, []);
+
+
   const [form, setForm] = useState({
     title: "",
     shortDescription: "",
