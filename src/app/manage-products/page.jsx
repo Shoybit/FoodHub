@@ -66,7 +66,7 @@ function ManageProductsPageComponent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Manage Products</h1>
+      <h1 className="text-3xl font-bold mb-6 border-l-5 border-[#ff6900] pl-2">Manage Products</h1>
 
       {message && <p className="mb-4 text-green-600">{message}</p>}
 

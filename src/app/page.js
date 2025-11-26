@@ -35,7 +35,7 @@ export default function HomePage() {
       <Hero />
 
       <div className="max-w-11/12 mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Our Products</h1>
+        <h1 className="text-3xl font-bold mb-6 border-l-5 border-[#ff6900] pl-2">Our Products</h1>
 
         {visibleProducts.length === 0 ? (
           <p className="text-gray-500">No products available.</p>

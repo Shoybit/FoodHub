@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -78,12 +79,12 @@ export default function Testimonials() {
   return (
     <section className="py-16">
       <div className="max-w-11/12 mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-12">What Our Customers Say</h2>
+        <h2 className="text-3xl font-bold mb-12 border-l-5 border-[#ff6900] pl-2">What Our Customers Say</h2>
         <div ref={sliderRef} className="flex gap-8 overflow-hidden">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className={`${review.bg} text-white p-6 rounded-lg shadow flex-shrink-0 w-72 flex flex-col items-center text-center border border-white`} // <-- এখানে border যোগ
+              className={`${review.bg} text-white p-6 rounded-lg shadow shrink-0 w-72 flex flex-col items-center text-center border border-white`} // <-- এখানে border যোগ
             >
               <img
                 src={review.avatar}

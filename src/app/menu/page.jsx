@@ -36,7 +36,7 @@ export default function MenuPage() {
   return (
     <div className="max-w-11/12 mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold mb-4 sm:mb-0">Our Menu</h1>
+        <h1 className="text-3xl font-bold mb-4 sm:mb-0 border-l-5 border-[#ff6900] pl-2">Our Menu</h1>
 
         <div className="w-full sm:w-[370px]">
           <input

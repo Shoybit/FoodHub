@@ -84,7 +84,7 @@ function AddProductForm() {
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
       <ToastContainer />
-      <h1 className="text-3xl font-semibold mb-6">Add Product</h1>
+      <h1 className="text-3xl font-semibold mb-6 border-l-5 border-[#ff6900] pl-2">Add Product</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
