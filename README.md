@@ -94,7 +94,8 @@ yarn dev
 Your app will run at:
 
 ```
-/////////////////
+https://foodhub-one-neon.vercel.app/
+
 ```
 
 Backend API (Live URL):
@@ -138,7 +139,9 @@ https://foodhub-server.vercel.app
 ## 📁 Repository
 
 GitHub Repo: https://github.com/Shoybit/FoodHub  
-License: **MIT**
+Server Repo: https://github.com/Shoybit/FoodHub-Backend 
+
+* License: **MIT**
 
 ---
 
