@@ -4,6 +4,12 @@ FoodHub is a modern, user-friendly food ordering and management platform built w
 
 ---
 
+## 📁 Repository
+
+GitHub Repo: https://github.com/Shoybit/FoodHub  
+Server Repo: https://github.com/Shoybit/FoodHub-Backend 
+
+
 ## 🚀 Features
 
 ### 🛍️ User Features
@@ -135,11 +141,6 @@ https://foodhub-server.vercel.app
 ```
 
 ---
-
-## 📁 Repository
-
-GitHub Repo: https://github.com/Shoybit/FoodHub  
-Server Repo: https://github.com/Shoybit/FoodHub-Backend 
 
 * License: **MIT**
 
